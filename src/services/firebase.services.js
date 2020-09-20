@@ -3,18 +3,19 @@ import 'firebase/firestore'
 
 
 firebase.initializeApp({
-    apiKey: "AIzaSyB6z7mEfeUrYmsWK0svfpGiqLr66RHPHz8",
-    authDomain: "shopping-21428.firebaseapp.com",
-    databaseURL: "https://shopping-21428.firebaseio.com",
-    projectId: "shopping-21428",
-    storageBucket: "shopping-21428.appspot.com",
-    messagingSenderId: "841413403531",
-    appId: "1:841413403531:web:7dcbe36947ea475a3f458e",
-    measurementId: "G-WS26SJ6P61"
+    apiKey: "AIzaSyAv3bikqM-W9hAbmIw3mDzYZXq4xEYILGs",
+    authDomain: "registro-d7699.firebaseapp.com",
+    databaseURL: "https://registro-d7699.firebaseio.com",
+    projectId: "registro-d7699",
+    storageBucket: "registro-d7699.appspot.com",
+    messagingSenderId: "625597228076",
+    appId: "1:625597228076:web:03a4bdb24c92da3d0fdd89",
+    measurementId: "G-JLG9RJVYY3"
 })
 
 let db = firebase.firestore();
+let auth = firebase.auth();
 
 db.settings({ timestampsInSnapshots: true });
 
-export default db;
+export default { db, auth };
