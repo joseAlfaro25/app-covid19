@@ -1,44 +1,104 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState} from 'react';
 import GoogleMapReact from 'google-map-react';
+import axios from 'axios';
+import Card from './Card';
 
 
 
-const handleApiLoaded = (map, maps) => {
-    // use map and maps objects
-};
+
+
+
+
 
 const Maps = () => {
+
+    const [latest, setLatest] = useState([]);
+    const [results, setRes] = useState([])
+    const handleApiLoaded = (map, maps) => {
+        // use map and maps objects
+    };
+    useEffect(() => {
+        axios.all([
+            axios.get("https://corona.lmao.ninja/v3/covid-19/all"),
+            axios.get("https://corona.lmao.ninja/v2/countries")
+        ])
+            .then(res => {
+                setLatest(res[0].data)
+                setRes(res[1].data)
+
+            }).catch()
+        
+       
+    }, []);
+
+    
+    const paises = results.map((data, index) => { 
+        return (
+           
+            <div
+                lat={data.countryInfo.lat}
+                lng={data.countryInfo.long}
+                style={{
+                    color: "black",
+                    backgroundColor: "red",
+                    height: "25px",
+                    width: "35px",
+                    borderRadius:"5px"
+
+                }
+                }
+                key={index}
+                className="text-center"
+            >
+                {data.cases}
+            </div>
+        )
+    })
+        
+
     return (
         <Fragment>
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm">
+                        <Card title="Muertes" cases={latest.cases} />
+                    </div>
+                    <div className="col-sm">
+                        <Card title="Recuperados" cases={latest.deaths} />
+                    </div>
+                    <div className="col-sm">
+                        <Card title="Recuperados" cases={latest.recovered} />
+                    </div>
 
 
-            <div style={{ height: '100vh', width: '100%' }}>
+                </div>
+
+            </div>
+
+            <div style={{ height: '100vh', width: '100%' }} className="mt-2">
 
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyDFDfpqPGMa3nhYq4mH19sBaTExV_3JVN8' }}
+                    bootstrapURLKeys={{ key: 'AIzaSyCuLsH_VNmShryp2eV2vHdTKK6U_pxvBdM' }}// la Key esta aqui por cuestiones practiva pero en producion la colocaria en el .env
                     defaultCenter={{
-                        lat: 59.95,
-                        lng: 30.33
+                        lat: 30,
+                        lng: 45
                     }
                     }
-                    defaultZoom={10}
+                    defaultZoom={-4}
                     yesIWantToUseGoogleMapApiInternals
                     onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-                >
-                    <div
-                        lat={59.955413}
-                        lng={30.337844}
-                        text="My Marker"
-                    >Mi Localizacion</div>
 
+                >
+
+                    {paises}
                 </GoogleMapReact>
             </div>
 
-         
+
         </Fragment>
     );
 }
- 
+
 export default Maps;
 
 

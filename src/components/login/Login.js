@@ -21,7 +21,7 @@ const Login = () => {
             setError('Datos vacíos pass!')
             return
         }
-        
+        console.log(Datos)
 
     }
 
@@ -29,7 +29,7 @@ const Login = () => {
         <Fragment>
             <div className="container">
                 <div className="row justify-content-center mt-5">
-                    <div className="jumbotron col-md-5">
+                    <div className="card-body col-md-5">
                         <div>
                             <form onSubmit={Datos}>
                                 {
