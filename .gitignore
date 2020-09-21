@@ -24,9 +24,9 @@ yarn-error.log*
 
 node_modules/
 package-lock.json
-Thumbs.db
 .env
 .vscode
+<<<<<<< HEAD
 vapidKeys.json
 
 # Environments
@@ -37,3 +37,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+=======
+
+>>>>>>> 87e05583a7987fffcb2869bd6abb7bce6ce640d2
