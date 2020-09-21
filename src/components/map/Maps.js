@@ -2,11 +2,7 @@ import React, { Fragment, useEffect, useState} from 'react';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 import Card from './Card';
-
-
-
-
-
+const { APP_VAPID_PUBLIC_KEY } = process.env;
 
 
 
@@ -78,13 +74,13 @@ const Maps = () => {
             <div style={{ height: '100vh', width: '100%' }} className="mt-2">
 
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyCuLsH_VNmShryp2eV2vHdTKK6U_pxvBdM' }}// la Key esta aqui por cuestiones practiva pero en producion la colocaria en el .env
+                    bootstrapURLKeys={{ key:APP_VAPID_PUBLIC_KEY }}// la Key esta aqui por cuestiones practiva pero en producion la colocaria en el .env
                     defaultCenter={{
                         lat: 30,
                         lng: 45
                     }
                     }
-                    defaultZoom={-4}
+                    defaultZoom={0}
                     yesIWantToUseGoogleMapApiInternals
                     onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
 

@@ -4,16 +4,12 @@
 // const ROUTES = [
   
 //   {
-//     route: 'maps',
-//     component: Maps,
-//     exact: true
+//     exact path='/' component={Home}
 
 //   }
 //   ,
 //   {
-//     route: '/',
-//     component: Home,
-//     exact: true
+//     exact path='/maps' component={Maps}
 
 //   }
 // ]
