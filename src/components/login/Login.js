@@ -66,7 +66,8 @@ const Login = () => {
                 </div>
         
         </div>
-    </Fragment> );
+        </Fragment>
+    );
 }
  
 export default Login;

@@ -74,7 +74,7 @@ const Maps = () => {
             <div style={{ height: '100vh', width: '100%' }} className="mt-2">
 
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key:APP_VAPID_PUBLIC_KEY }}// la Key esta aqui por cuestiones practiva pero en producion la colocaria en el .env
+                    bootstrapURLKeys={{ key:[APP_VAPID_PUBLIC_KEY] }}// la Key esta aqui por cuestiones practiva pero en producion la colocaria en el .env
                     defaultCenter={{
                         lat: 30,
                         lng: 45
