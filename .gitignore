@@ -24,7 +24,6 @@ yarn-error.log*
 
 node_modules/
 package-lock.json
-Thumbs.db
 .env
 .vscode
-vapidKeys.json
+
