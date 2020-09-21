@@ -5,9 +5,12 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import Maps from './components/map/Maps';
+
 import Home from './components/Home';
 import Login from './components/login/Login'
+import Registrar from './components/formPeople/Register';
+import Country from './components/map/Country';
+
 
 
 
@@ -26,8 +29,9 @@ function App() {
         <Switch>
          
           <Route exact path='/' component={Home} />
-          <Route exact path='/maps' component={Maps} />
+          <Route exact path='/country' component={Country} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Registrar} />
         </Switch>
       </Router>
     </div>

@@ -28,8 +28,15 @@ const Login = () => {
     return (
         <Fragment>
             <div className="container">
-                <div className="row justify-content-center mt-5">
-                    <div className="jumbotron col-md-5">
+                <div className="row justify-content-center mt-1">
+                    <div>
+                        <img src="https://i.pinimg.com/564x/c5/df/28/c5df28bf40fde11cc5ad1149cb3d8d01.jpg" alt="100" width="180"
+                            height="150" className="rounded-circle justify-content-center" style={{ index: "100" }}></img>
+                    </div>
+                  
+                    <div className="jumbotron col-md-5 border mb-1">
+                        
+                        <h4 className="text-info text-center mb-2">Iniciar Sesion</h4>
                         <div>
                             <form onSubmit={Datos}>
                                 {
@@ -39,6 +46,7 @@ const Login = () => {
                                         </div>
                                     ) : null
                                 }
+                                <h6>Email</h6>
                                 <input
                                     type="email"
                                     className="form-control mb-2"
@@ -46,6 +54,7 @@ const Login = () => {
                                     onChange={e => setEmail(e.target.value)}
                                     value={email}
                                 />
+                                <h6>Contraseña</h6>
                                 <input
                                     type="password"
                                     className="form-control mb-2"
@@ -53,19 +62,23 @@ const Login = () => {
                                     onChange={e => setPass(e.target.value)}
                                     value={pass}
                                 />
-                                <button
-                                    className="btn btn-lg btn-dark btn-block"
-                                    type="submit"
-                                >
-                                    Iniciar Sesion
-                     </button>
+
+                                <div className="">
+                                    <button
+                                        className="btn btn-primary mt-2 btn-lg "
+                                        type="submit"
+                                    >
+                                        Iniciar Sesion
+                                </button>
+                                </div>
+                               
 
                             </form>
                         </div>
-                        </div>
+                    </div>
                 </div>
-        
-        </div>
+
+            </div>
         </Fragment>
     );
 }

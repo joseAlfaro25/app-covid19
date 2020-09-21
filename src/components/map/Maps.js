@@ -1,80 +1,29 @@
-import React, { Fragment, useEffect, useState} from 'react';
+import React, { Fragment} from 'react';
 import GoogleMapReact from 'google-map-react';
-import axios from 'axios';
-import Card from './Card';
-const { APP_VAPID_PUBLIC_KEY } = process.env;
+import CardMaps from './CardMap';
 
 
 
-const Maps = () => {
 
-    const [latest, setLatest] = useState([]);
-    const [results, setRes] = useState([])
+
+const Maps = (props) => {
+
     const handleApiLoaded = (map, maps) => {
         // use map and maps objects
     };
-    useEffect(() => {
-        axios.all([
-            axios.get("https://corona.lmao.ninja/v3/covid-19/all"),
-            axios.get("https://corona.lmao.ninja/v2/countries")
-        ])
-            .then(res => {
-                setLatest(res[0].data)
-                setRes(res[1].data)
-
-            }).catch()
-        
-       
-    }, []);
+    
 
     
-    const paises = results.map((data, index) => { 
-        return (
-           
-            <div
-                lat={data.countryInfo.lat}
-                lng={data.countryInfo.long}
-                style={{
-                    color: "black",
-                    backgroundColor: "red",
-                    height: "25px",
-                    width: "35px",
-                    borderRadius:"5px"
-
-                }
-                }
-                key={index}
-                className="text-center"
-            >
-                {data.cases}
-            </div>
-        )
-    })
-        
+    
 
     return (
         <Fragment>
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm">
-                        <Card title="Muertes" cases={latest.cases} />
-                    </div>
-                    <div className="col-sm">
-                        <Card title="Recuperados" cases={latest.deaths} />
-                    </div>
-                    <div className="col-sm">
-                        <Card title="Recuperados" cases={latest.recovered} />
-                    </div>
-
-
-                </div>
-
-            </div>
+            <CardMaps/>
 
             <div style={{ height: '100vh', width: '100%' }} className="mt-2">
 
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key:[APP_VAPID_PUBLIC_KEY] }}// la Key esta aqui por cuestiones practiva pero en producion la colocaria en el .env
+                    bootstrapURLKeys={{ key:[props.clave]}}// la Key esta aqui por cuestiones practiva pero en producion la colocaria en el .env
                     defaultCenter={{
                         lat: 30,
                         lng: 45
@@ -85,9 +34,10 @@ const Maps = () => {
                     onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
 
                 >
-
-                    {paises}
+                    {props.pais}
+                   
                 </GoogleMapReact>
+                
             </div>
 
 
