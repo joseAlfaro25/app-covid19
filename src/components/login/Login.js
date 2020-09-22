@@ -1,32 +1,33 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import {auth } from '../../services/firebaseConfig'
 
 
 
 
-
-const Login = () => {
-    const [email, setEmail] = React.useState('')
-    const [pass, setPass] = React.useState('')
-    const [error, setError] = React.useState(null)
-
-    const Datos = e => {
-        e.preventDefault()
-        if (!email.trim() || !pass.trim()) {
-            console.log('Datos vacíos email!')
-            setError('Datos vacíos email!')
-            return
+const Login = (props) => {
+    const [email, setEmail] = useState('')
+    const [pass, setPass] = useState('')
+    const [error, setError] = useState(null)
+ 
+   
+   
+    const login = (async (e) => {
+       
+        try {
+         e.preventDefault()
+          await auth.signInWithEmailAndPassword(email, pass)
+            setEmail('')
+            setPass('')
+            setError(null)
+            props.history.replace('/')
+        } catch (error) {
+            alert(error.message)
         }
-        if (!pass.trim()) {
-            console.log('Datos vacíos pass!')
-            setError('Datos vacíos pass!')
-            return
-        }
-        console.log(Datos)
-
-    }
+    })
 
     return (
         <Fragment>
+        
             <div className="container">
                 <div className="row justify-content-center mt-1">
                     <div>
@@ -38,7 +39,7 @@ const Login = () => {
                         
                         <h4 className="text-info text-center mb-2">Iniciar Sesion</h4>
                         <div>
-                            <form onSubmit={Datos}>
+                            <form onSubmit={login}>
                                 {
                                     error ? (
                                         <div className="alert alert-danger">

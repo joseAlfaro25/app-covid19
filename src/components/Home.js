@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
 
+
+
 const Home = () => {
     return (
         <Fragment>
-
-            <div className="">
+          
+            {/* <div className="">
                 <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner">
 
@@ -46,7 +48,8 @@ const Home = () => {
                         <span className="sr-only">Next</span>
                     </a>
                 </div>
-                </div>
+            </div> */}
+           
        </Fragment>
      );
 }

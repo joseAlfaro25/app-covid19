@@ -1,8 +1,8 @@
-import firebase from 'firebase/app'
+import app from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/auth'
 
-
-firebase.initializeApp({
+const firebaseConfig = {
     apiKey: "AIzaSyAv3bikqM-W9hAbmIw3mDzYZXq4xEYILGs",
     authDomain: "registro-d7699.firebaseapp.com",
     databaseURL: "https://registro-d7699.firebaseio.com",
@@ -11,11 +11,12 @@ firebase.initializeApp({
     messagingSenderId: "625597228076",
     appId: "1:625597228076:web:03a4bdb24c92da3d0fdd89",
     measurementId: "G-JLG9RJVYY3"
-})
+}
 
-let db = firebase.firestore();
-let auth = firebase.auth();
+app.initializeApp(firebaseConfig);
 
-db.settings({ timestampsInSnapshots: true });
+const db = app.firestore();
+const auth = app.auth();
 
-export default { db, auth };
+
+export { db, auth }
