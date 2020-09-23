@@ -50,12 +50,12 @@ const NavBar = (props) => {
                                 </li>
 
                                 <li>
-                                    <button
-                                        className="btn btn bg-Black"
+                                    <li
+                                        className=" nav-item"
                                         onClick={() => app.auth().signOut()}
                                     >
                                         Cerrar Sesión
-                             </button>
+                             </li>
 
 
                                 </li>

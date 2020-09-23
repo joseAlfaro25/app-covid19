@@ -23,25 +23,41 @@ const CasesColombia = () => {
        
     return (
         <div className="container mb-2">
-            <div className="row">
-                <div className="col-md-6">
-                    <h3>Lista de Pacientes</h3>
-                    <ul className="list-group">
-                        {
-                            Pacientes.map(item => (
-                                <li className="list-group-item" key={item.id}>
-                                    <span>{item.nombre}</span>
-                                   
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-                <div className="col-md-6">
+            <table class="table mt-2">
+                <thead>
+                    <tr>
+                        
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        Pacientes.map(item => (
+                            <tr>
+
+                                <td>{item.nombre}</td>
+                                <td>{item.email}</td>
+                                <td>{item.detalles}</td>
+                            </tr>
+
+                        ))
+                    }
+                </tbody>
+            </table>
+
+
+
+
+            
+                       
+              
+                <div >
                     
         </div>
             </div>
-        </div>
+        
     );
 }
  

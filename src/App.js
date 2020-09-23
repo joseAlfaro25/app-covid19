@@ -36,7 +36,7 @@ function App() {
           <Route exact path='/login' component={Login} />
           <PrivateRoute exact path='/register' component={Registrar} />
           <PrivateRoute exact path='/map-people' component={DataPeople}/>
-          <PrivateRoute exact path='/CasesColombia' component={CasesColombia} />
+          <PrivateRoute exact path='/cases-colombia' component={CasesColombia} />
         
       </Router>
       </AuthProvider>
