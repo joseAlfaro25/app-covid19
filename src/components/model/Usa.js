@@ -8,7 +8,7 @@ const Hospital = () => {
     const [latest, setLatest] = useState([])
 
     useEffect(() => {
-        axios.get("")
+        axios.get("https://corona.lmao.ninja/v3/covid-19/states")
 
             .then(res => {
                 setLatest(res.data)

@@ -17,7 +17,7 @@ const NavBar = (props) => {
         <Fragment>
 
            
-            <nav className="navbar navbar-primary-lg navbar-light bg-light ">
+            <nav className="navbar navbar-lg navbar-light bg-primary ">
                 GeoCovid
                  {currentUser &&
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,6 +51,7 @@ const NavBar = (props) => {
 
                                 <li>
                                     <button
+                                        className="btn btn-lg bg-Black"
                                         onClick={() => app.auth().signOut()}
                                     >
                                         Cerrar Sesión

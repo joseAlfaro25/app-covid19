@@ -7,7 +7,7 @@ const Country = () => {
     
 
     const [latest, setLatest] = useState([])
-   
+//https://corona.lmao.ninja/v3/covid-19/countries/colombia
     useEffect(() => {
         axios.get("https://corona.lmao.ninja/v2/countries")
         

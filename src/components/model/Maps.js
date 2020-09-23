@@ -31,6 +31,7 @@ const Maps = (props) => {
                     key: [props.clave] ,
                         libraries: ['places'],
                         types: ['hospital']
+                       
                     }
                     }
                     defaultCenter={{
