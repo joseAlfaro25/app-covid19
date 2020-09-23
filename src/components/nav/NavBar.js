@@ -43,7 +43,7 @@ const NavBar = (props) => {
                                     <Link to="/country" className="nav-link">Mapa</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/login" className="nav-link">Login</Link>
+                                    <Link to="/" className="nav-link">Pacientes</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/register" className="nav-link">Registro de casos</Link>
@@ -51,11 +51,11 @@ const NavBar = (props) => {
 
                                 <li>
                                     <button
-                                        className="btn btn-lg bg-Black"
+                                        className="btn btn bg-Black"
                                         onClick={() => app.auth().signOut()}
                                     >
                                         Cerrar Sesión
-                        </button>
+                             </button>
 
 
                                 </li>

@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import app  from '../../services/auth/base'
-
+import React, { useState, useEffect } from 'react';
+import app from '../../services/auth/base';
+import MapPeople from './MapPeople';
+const { APP_VAPID_PUBLIC_KEY } = process.env;
 const DataPeople = () => {
     const [datos, setDatos] = useState([])
 
     useEffect(() => {
 
         const obtenerDatos = async () => {
-      let db =  app.firestore()
-          
-                const data = await db.collection('datos').get()
-                const arrayData = data.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-                console.log(arrayData)
-                setDatos(arrayData)
-                console.log(error)
-            
+            const db = app.firestore()
+
+            const data = await db.collection('datos').get()
+            const arrayData = data.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+            alert(arrayData)
+            setDatos(arrayData)
+            console.log(error)
+
         }
         obtenerDatos()
 
@@ -29,7 +30,7 @@ const DataPeople = () => {
 
             <div
                 lat={parseFloat(data.latitud)}
-                lng={parseFloat(data.longitud)}
+                lng={parseFloat(data.longitude)}
                 style={{
                     color: "black",
                     backgroundColor: "white",
@@ -42,20 +43,20 @@ const DataPeople = () => {
 
 
             >
-                <img height="10px" alt="10" src={data.countryInfo.flag} >
-                </img>
 
                 {data.nombre}
             </div>
+
 
 
         )
     })
     return (
         <Fragment>
+            <MapPeople clave={APP_VAPID_PUBLIC_KEY} obj={pacientes} />
 
         </Fragment>
     );
 }
- 
+
 export default DataPeople;
