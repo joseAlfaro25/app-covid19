@@ -55,7 +55,7 @@ const NavBar = (props) => {
                                         onClick={() => app.auth().signOut()}
                                     >
                                         Cerrar Sesión
-                             </li>
+                               </li>
 
 
                                 </li>
