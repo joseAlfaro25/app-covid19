@@ -1,17 +1,66 @@
 import React, { Fragment, useState } from 'react';
+import app from '../../services/auth/base'
 
-
+import { usePosition } from 'use-position';
 
 const Registrar = (props) => {
+    const watch = true;
+    const {
+        latitude,
+        longitude,
+    } = usePosition(watch);
 
+    
     const [nombre, setNombre] = useState('')
     const [numeroID, setNumero]= useState('')
     const [email, setEmail] = useState('')
     const [detalles, setDetalles] = useState('')
-    // const [logitud, setLogitud] = useState('')
-    // const [latitud, setLatitud] = useState('')
+    const [longitud, setLongitud] = useState('')
+    const [latitud, setLatitud] = useState('')
+    const [photoUrl,setphotoUrl]= useState('')
+    const [Imagen, setImagen] = useState();
+    const [ref, setRef] = useState(null);
 
-    const Datos=() => {
+    const changeImagen = e => {
+        setImagen(e.target.files[0]);
+    }
+    
+    const Datos = async (e) => {
+        e.preventDefault();
+
+        if (detalles !=='') {
+            try {
+                const newRef = app.storage().ref('fotos').child(Imagen.name); // nombre del archivo
+                setRef(newRef);
+                await newRef.put(Imagen);
+                let photoUrl = await newRef.getDownloadURL()
+                console.log('la ul de la imagen es' + photoUrl);
+ 
+            } catch (error) {
+            
+            }
+       
+            try {
+                const nuevoRegistro = {
+                    nombre: nombre,
+                    email: email,
+                    numeroID: numeroID,
+                    detalles: detalles,
+                    longitude: longitude,
+                    latitude: latitude,
+                    photoUrl:photoUrl
+               
+                }
+                await app.firestore().collection('datos').add(nuevoRegistro)
+            
+            } catch (error) {
+            
+            }
+            
+        
+        }
+        
+
     
     }
 
@@ -58,12 +107,35 @@ const Registrar = (props) => {
                                 >
 
                                 </textarea>
+                                <div>
+                                    <div>
+                                        <input name="nombre"
+                                            type="text"
+                                            className="invisible"
+                                            placeholder="Nombre Completo"
+                                            onChange={e => setLongitud(e.target.value)}
+                                            value={longitud} />
+
+                                    </div>
+                                    <div>
+                                        <input name="nombre"
+                                            type="text"
+                                            className="invisible"
+                                            placeholder="Nombre Completo"
+                                            onChange={e => setLatitud(e.target.value)}
+                                            value={latitud} />
+
+                                    </div>
+                                    <div>
+
+                                    </div>
+                                 </div>
 
                                 
 
-                                <input class="btn btn-primary" type="button" value="Subir Imagen"></input>
+
                                 
-                               
+                                <input type="file" name="imagen" onChange={changeImagen} />
                                 <button
                                     className="btn btn-primary"
                                     type="submit"

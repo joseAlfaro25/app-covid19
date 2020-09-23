@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from './components/nav/NavBar';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom';
-
-
+import app from './services/auth/base'
 import Home from './components/Home';
 import Login from './components/login/Login'
 import Registrar from './components/formPeople/Register';
 import Country from './components/map/Country';
-
-
+import Hospital from './components/map/Usa';
+import { AuthProvider } from "./services/auth/Auth";
+import PrivateRoute from  "./services/auth/PrivateRoute";
 
 
 
@@ -21,31 +21,30 @@ import Country from './components/map/Country';
 
 
 function App() {
-  
-
-  
-  
- return  (
+  return(    
 
    
     <div>
-     
-      <Router>
+      
+      <AuthProvider>
+        <Router>
         <NavBar />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/country' component={Country} />
+     
+          <PrivateRoute exact path='/' component={Home} />
+          <PrivateRoute exact path='/country' component={Country} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Registrar} />
-         <Route exact path='/' />
-        </Switch>
+          <PrivateRoute exact path='/register' component={Registrar} />
+          <PrivateRoute exact path='/hopital' component={Hospital} />
+        
       </Router>
+      </AuthProvider>
+    
     </div>
     
     
 
 
-  );
+  ) 
 }
 
 
