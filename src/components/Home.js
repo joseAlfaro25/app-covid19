@@ -13,8 +13,8 @@ const Home = () => {
         <div class="carousel-item active">
           <img
                 src="https://i.ibb.co/VYhWMgC/service.png"
-            class="d-block w-100"
-            width="500"
+            className="d-block w-100"
+            width="350"
                 height="350"
                 alt=""
           />
@@ -23,8 +23,8 @@ const Home = () => {
         <div class="carousel-item">
           <img
                 src="https://i.ibb.co/6sR40nV/1.png"
-            class="d-block w-100"
-            width="500"
+            className="d-block w-100"
+            width="350"
                 height="350"
                 alt=""
           />
