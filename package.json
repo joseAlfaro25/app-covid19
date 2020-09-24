@@ -19,8 +19,7 @@
     "reactfire": "^2.0.0-alpha.3",
     "sweetalert2": "^10.3.2",
     "swr": "^0.3.3",
-    "use-position": "0.0.7",
-    "use-supercluster": "^0.2.9"
+    "use-position": "0.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
