@@ -1,6 +1,5 @@
 import React, { Fragment, useState  } from 'react';
 import app from '../../services/auth/base'
-import './Register.css'
 import { usePosition } from 'use-position';
 import { AuthContext } from "../../services/auth/Auth";
 import swal from 'sweetalert2'
