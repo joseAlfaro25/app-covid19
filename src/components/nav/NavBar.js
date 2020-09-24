@@ -49,16 +49,12 @@ const NavBar = (props) => {
                                     <Link to="/register" className="nav-link">Registro de casos</Link>
                                 </li>
 
-                                <li>
-                                    <li
-                                        className=" nav-item"
-                                        onClick={() => app.auth().signOut()}
-                                    >
-                                        Cerrar Sesión
+                                <li
+                                    className=" nav-item"
+                                    onClick={() => app.auth().signOut()}
+                                >
+                                    Cerrar Sesión
                                </li>
-
-
-                                </li>
 
                             </ul>
 
