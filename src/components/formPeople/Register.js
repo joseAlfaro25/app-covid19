@@ -125,7 +125,7 @@ const Registrar = (props) => {
                                     value={nombre}
                                 />
                                 <h5>Detalles</h5>
-                                <textarea rows="3" placeholder="Detalles" required
+                                <textarea rows="3" required
                                     type="text-area"
                                     className="form-control mb-2"
                                     onChange={e => setDetalles(e.target.value)}
