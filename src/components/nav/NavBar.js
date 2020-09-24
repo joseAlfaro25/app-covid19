@@ -43,7 +43,7 @@ const NavBar = (props) => {
                                     <Link to="/country" className="nav-link">Mapa</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/" className="nav-link">Pacientes</Link>
+                                    <Link to="/map-people" className="nav-link">Pacientes</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/register" className="nav-link">Registro de casos</Link>

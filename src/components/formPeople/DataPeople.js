@@ -53,7 +53,7 @@ const DataPeople = () => {
     })
     return (
         <Fragment>
-            <MapPeople clave={APP_VAPID_PUBLIC_KEY} obj={pacientes} />
+           
 
         </Fragment>
     );
