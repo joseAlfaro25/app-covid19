@@ -1,10 +1,10 @@
-import React, { Fragment, useState} from 'react';
+import React, { Fragment, useState, useEffect} from 'react';
 
 import app from '../../services/auth/base';
 const CasesColombia = () => {
     const [Pacientes, setPacientes] = useState([])
 
-    React.useEffect(() => {
+    useEffect(() => {
 
         const obtenerDatos = async () => {
             const db = app.firestore()
@@ -29,7 +29,7 @@ const CasesColombia = () => {
                         
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo</th>
-                        <th scope="col">Detalles</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,7 @@ const CasesColombia = () => {
 
                                 <td>{item.nombre}</td>
                                 <td>{item.email}</td>
-                                <td>{item.detalles}</td>
+                               
                             </tr>
 
                         ))

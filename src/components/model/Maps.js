@@ -1,4 +1,4 @@
-import React, { Fragment} from 'react';
+import React, { Fragment, useState} from 'react';
 import GoogleMapReact from 'google-map-react';
 
 
@@ -7,10 +7,12 @@ import GoogleMapReact from 'google-map-react';
 
 
 const Maps = (props) => {
-
+    
+   
     const handleApiLoaded = (map, maps) => {
         // use map and maps objects
     };
+    
     
  
     return (
@@ -18,8 +20,9 @@ const Maps = (props) => {
             
 
             <div style={{ height: '100vh', width: '100%' }} >
-
+               
                 <GoogleMapReact
+                    
                     bootstrapURLKeys={{
                     key: [props.clave] ,
                         libraries: ['places'],
@@ -32,13 +35,17 @@ const Maps = (props) => {
                         lng: 5
                     }
                         
+                        
                     }
                     defaultZoom={2}
                     yesIWantToUseGoogleMapApiInternals
                     onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
 
+                    
                 >
                     {props.obj}
+                    
+                   
 
                    
                    

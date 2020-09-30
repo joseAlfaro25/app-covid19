@@ -6,7 +6,7 @@ const { APP_VAPID_PUBLIC_KEY } = process.env;
 
 const Hospital = () => {
     const [latest, setLatest] = useState([])
-
+        //https://www.datos.gov.co/resource/g2nx-tces.json
     useEffect(() => {
         axios.get("https://corona.lmao.ninja/v3/covid-19/states")
 

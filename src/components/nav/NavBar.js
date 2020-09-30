@@ -7,11 +7,7 @@ const NavBar = (props) => {
 
 
     const { currentUser } = useContext(AuthContext)
-    if (currentUser) {
-
-
-
-    }  
+    
    
     return (
         <Fragment>
@@ -19,51 +15,78 @@ const NavBar = (props) => {
            
             <nav className="navbar navbar-lg navbar-light bg-primary ">
                 GeoCovid
-                 {currentUser &&
+                 { currentUser &&
+                 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                 }
-                {
-                    currentUser && 
+               
                     <div className="collapse navbar-collapse " id="navbarNav">
-                        {
+                        
 
                             <ul className="navbar-nav ml-auto">
 
 
 
-
+                            {currentUser && 
                                 <li className="nav-item active">
 
                                     <Link to="/" className="nav-link" >Home</Link>
 
                                 </li>
+                            }
+                            {currentUser && 
                                 <li className="nav-item">
                                     <Link to="/country" className="nav-link">Mapa</Link>
                                 </li>
+                            }
+                            {currentUser && 
+
                                 <li className="nav-item">
                                     <Link to="/cases-colombia" className="nav-link">Pacientes</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link to="/register" className="nav-link">Registro de casos</Link>
-                                </li>
 
-                                <li
-                                    className=" nav-item"
-                                    onClick={() => app.auth().signOut()}
-                                >
-                                    Cerrar Sesión
+                            }
+                            {currentUser && 
+                            <li className="nav-item">
+                                <Link to="/register" className="nav-link">Registro de casos</Link>
+                            </li>
+
+                        }
+                        {currentUser && 
+                        
+
+                            <li className="nav-item">
+                                <Link to="/statesmen" className="nav-link">Registro de casos</Link>
+                            </li>
+
+                        }
+                            {currentUser && 
+
+                            <li className="nav-item">
+                            <li
+                                className="nav-link "
+                                onClick={() => app.auth().signOut()}
+                            >
+                                Cerrar Sesión
                                </li>
+                                </li>
+                                
+                        }
+                        
+                              
+                                
+
 
                             </ul>
 
-                        }
+                        
 
                     </div>
 
 
-                }
+                
                
             </nav>
         </Fragment>

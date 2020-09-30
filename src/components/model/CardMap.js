@@ -9,9 +9,9 @@ const CardMaps = () => {
     const [latest, setLatest] = useState([])
     useEffect(() => {
 
-        axios.get("https://corona.lmao.ninja/v3/covid-19/all")
+        axios.get("https://api.covid19api.com/summary")
             .then(res => {
-                setLatest(res.data)
+                setLatest(res.data.Global)
 
             }).catch()
 
@@ -24,13 +24,13 @@ const CardMaps = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <Card title="Casos" cases={latest.cases} />
+                        <Card title="Casos" cases={latest.TotalConfirmed} newCase={latest.NewConfirmed} />
                     </div>
                     <div className="col-sm">
-                        <Card title="Muertes" cases={latest.deaths} />
+                        <Card title="Muertes" cases={latest.TotalDeaths} newCase={latest.NewDeaths}/>
                     </div>
                     <div className="col-sm">
-                        <Card title="Recuperados" cases={latest.recovered} />
+                        <Card title="Recuperados" cases={latest.TotalRecovered} newCase={latest.NewRecovered}  />
                     </div>
 
 

@@ -1,18 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios'
-import Maps from './Maps';
+import Maps from '../Maps';
 const { APP_VAPID_PUBLIC_KEY } = process.env;
 
 const Country = () => {
     
-
+    
     const [latest, setLatest] = useState([])
-//https://corona.lmao.ninja/v3/covid-19/countries/colombia
+
     useEffect(() => {
-        axios.get("https://corona.lmao.ninja/v2/countries")
-        
-            .then(res => {
+       
+            axios.get("https://disease.sh/v3/covid-19/jhucsse").then(res => {
                 setLatest(res.data)
+                console.log(res.data)
 
             }).catch((erro) => {
                 console.log(erro)
@@ -28,26 +28,36 @@ const Country = () => {
             
           
        
+           
+            
                 <div
-                lat={parseFloat(data.countryInfo.lat)}
-                lng={parseFloat(data.countryInfo.long)}
+
+                    lat={data.coordinates.latitude}
+                    lng={data.coordinates.longitude}
                     style={{
                         color: "black",
-                        backgroundColor: "white",
+                        backgroundColor: "red",
                         height: "25px",
                         width: "35px",
-                       
+                  
+                        borderRadius: 30
+
 
                     }
                     }
-                    
-                   
+
+
             >
-                <img height="10px" alt="10" src={data.countryInfo.flag} >
-                </img>
+                
+                    <div>{data.stats.confirmed}</div>
+                    {data.country}
+                    {data.province}
+              
                     
-                {data.cases}
                 </div>
+               
+               
+                
                 
                 
         )
