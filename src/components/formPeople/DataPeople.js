@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import app from '../../services/auth/base';
-import MapPeople from './MapPeople';
-const { APP_VAPID_PUBLIC_KEY } = process.env;
+import Maps from '../model/Maps';
+
+
 const DataPeople = () => {
     const [datos, setDatos] = useState([])
 
@@ -14,7 +15,7 @@ const DataPeople = () => {
             const arrayData = data.docs.map(doc => ({ id: doc.id, ...doc.data() }))
             alert(arrayData)
             setDatos(arrayData)
-            console.log(error)
+           
 
         }
         obtenerDatos()
@@ -29,8 +30,8 @@ const DataPeople = () => {
 
 
             <div
-                lat={parseFloat(data.latitud)}
-                lng={parseFloat(data.longitude)}
+                lat={data.latitude}
+                lng={data.longitude}
                 style={{
                     color: "black",
                     backgroundColor: "white",
@@ -53,6 +54,8 @@ const DataPeople = () => {
     })
     return (
         <Fragment>
+
+            <Maps clave={process.env.APP_VAPID_PUBLIC_KEY} obj={pacientes} />
            
 
         </Fragment>

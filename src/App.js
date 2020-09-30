@@ -13,7 +13,9 @@ import Country from './components/model/Country/Country';
 import { AuthProvider } from "./services/auth/Auth";
 import PrivateRoute from  "./services/auth/PrivateRoute";
 import CasesColombia from "./components/Estadisticas/CasesColombia";
-import Statesmen from './components/Estadisticas/Statesmen';
+
+import DataPeople from './components/formPeople/DataPeople';
+import MapsC from './components/model/MapsC';
 
 
 
@@ -35,7 +37,8 @@ function App() {
           <Route exact path='/login' component={Login} />
           <PrivateRoute exact path='/register' component={Registrar} />
           <PrivateRoute exact path='/cases-colombia' component={CasesColombia} />
-          {/* <PrivateRoute exact path='/statesmen' component={Statesmen}/> */}
+          <PrivateRoute exact path='/data-peoplo' component={DataPeople} />
+          <PrivateRoute exact path='/maps-country' component={MapsC}/>
         
       </Router>
       </AuthProvider>
