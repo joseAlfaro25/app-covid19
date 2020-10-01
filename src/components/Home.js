@@ -7,10 +7,10 @@ const Home = () => {
     return (
       <Fragment>
       
-       < div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
+       < div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
+      <div className="carousel-inner">
         
-        <div class="carousel-item active">
+        <div className="carousel-item active">
           <img
                 src="https://i.ibb.co/VYhWMgC/service.png"
             className="d-block w-100"
@@ -18,9 +18,9 @@ const Home = () => {
                 height="350"
                 alt=""
           />
-          <div class="carousel-caption d-none d-md-block"></div>
+          <div className="carousel-caption d-none d-md-block"></div>
         </div>
-        <div class="carousel-item">
+        <div className="carousel-item">
           <img
                 src="https://i.ibb.co/6sR40nV/1.png"
             className="d-block w-100"
@@ -28,26 +28,26 @@ const Home = () => {
                 height="350"
                 alt=""
           />
-          <div class="carousel-caption d-none d-md-block"></div>
+          <div className="carousel-caption d-none d-md-block"></div>
         </div>
       </div>
       <a
-        class="carousel-control-prev"
+        className="carousel-control-prev"
         href="#carouselExampleCaptions"
         role="button"
         data-slide="prev"
       >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="sr-only">Previous</span>
       </a>
       <a
-        class="carousel-control-next"
+        className="carousel-control-next"
         href="#carouselExampleCaptions"
         role="button"
         data-slide="next"
       >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="sr-only">Next</span>
       </a>
     </div>
         

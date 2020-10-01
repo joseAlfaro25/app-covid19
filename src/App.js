@@ -16,6 +16,8 @@ import CasesColombia from "./components/Estadisticas/CasesColombia";
 
 import DataPeople from './components/formPeople/DataPeople';
 import MapsC from './components/model/MapsC';
+import Direccion from './components/model/Direccion';
+import MapDirectionsRenderer from './components/Estadisticas/Statesmen'
 
 
 
@@ -37,8 +39,10 @@ function App() {
           <Route exact path='/login' component={Login} />
           <PrivateRoute exact path='/register' component={Registrar} />
           <PrivateRoute exact path='/cases-colombia' component={CasesColombia} />
-          <PrivateRoute exact path='/data-peoplo' component={DataPeople} />
-          <PrivateRoute exact path='/maps-country' component={MapsC}/>
+          <PrivateRoute exact path='/data-people' component={DataPeople} />
+          <PrivateRoute exact path='/maps-country' component={MapsC} />
+          <PrivateRoute exact path="/maps-covid-people" component={Direccion} />
+          <PrivateRoute exact path='/map' component={MapDirectionsRenderer} />
         
       </Router>
       </AuthProvider>

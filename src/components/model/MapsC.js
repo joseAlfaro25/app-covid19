@@ -10,7 +10,7 @@ import axios from 'axios';
 
 
 function Map() {
-    const [selectedPark, setSelectedPark] = useState(null);
+    const [selectedCorona, setSelectedCorona] = useState(null);
     const [latest, setLatest] = useState([]);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ function Map() {
         });
         const listener = e => {
             if (e.key === "Escape") {
-                setSelectedPark(null);
+                setSelectedCorona(null);
             }
         };
         window.addEventListener("keydown", listener);
@@ -48,7 +48,7 @@ function Map() {
                         lng: parseFloat(data.coordinates.longitude)
                     }}
                     onClick={() => {
-                        setSelectedPark(data);
+                        setSelectedCorona(data);
                     }}
                     icon={{
                         url: `https://www.flaticon.com/svg/static/icons/svg/2913/2913604.svg`,
@@ -57,20 +57,20 @@ function Map() {
                 />
             ))}
 
-            {selectedPark && (
+            {selectedCorona && (
                 <InfoWindow
                     onCloseClick={() => {
-                        setSelectedPark(null);
+                        setSelectedCorona(null);
                     }}
                     position={{
-                        lat: parseFloat(selectedPark.coordinates.latitude),
-                        lng: parseFloat(selectedPark.coordinates.longitude)
+                        lat: parseFloat(selectedCorona.coordinates.latitude),
+                        lng: parseFloat(selectedCorona.coordinates.longitude)
                     }}
                 >
                     <div>
-                        <h2>{selectedPark.country}</h2>
-                        <h5 className="text-center">{selectedPark.stats.confirmed}</h5>
-                        <p>{selectedPark.province}</p>
+                        <h2>{selectedCorona.country}</h2>
+                        <h5 className="text-center">{selectedCorona.stats.confirmed}</h5>
+                        <p>{selectedCorona.province}</p>
 
                     </div>
                 </InfoWindow>
