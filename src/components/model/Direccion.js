@@ -7,70 +7,30 @@ import {
     InfoWindow,
     DirectionsRenderer
 } from "react-google-maps";
+import swal from 'sweetalert2'
+import { usePosition } from 'use-position';
 import app from '../../services/auth/base'
+import {getDistance } from 'geolib'
 /* global google */
 
 const MapDirectionsRenderer =()=> {
-    const [datos, setDatos] = useState([])
-    const [directions, setDirections] = useState(null);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-       
-        const obtenerDatos = async () => {
-            const db = app.firestore()
-            try {
-                const data = await db.collection('datos').get()
-                const arrayData = data.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-                console.log(arrayData)
-                setDatos(arrayData)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        obtenerDatos()
-
-        const waypoints = datos.map(p => ({
-            location: { lat: p.latitude, lng: p.longitude },
-            stopover: true
-        }));
-        const origin = waypoints.shift().location;
-        const destination = waypoints.pop().location;
-
-        const directionsService = new google.maps.DirectionsService();
-        directionsService.route(
-            {
-                origin: origin,
-                destination: destination,
-                travelMode:  google.maps.TravelMode.DRIVING ,
-                waypoints: waypoints
-            },
-            (result, status) => {
-                console.log(result)
-                if (status === google.maps.DirectionsStatus.OK) {
-                    setDirections(result);
-                } else {
-                    setError(result);
-                }
-            }
-        );
-    });
-
-    if (error) {
-        return <h1>{error}</h1>;
-    }
-    return (
-        directions && (
-            <Map directions={directions} />
-        )
-    );
+    
 }
 
 
 const Map = (props) => {
+    const watch = true;
+    const {
+        latitude,
+        longitude,
+    } = usePosition(watch);
+
+    
+  
 
     const [datos, setDatos] = useState([])
     const [selectedCorona, setSelectedCorona] = useState(null);
+    const [state, setstate] = useState(null)
     
     useEffect(() => {
 
@@ -93,14 +53,40 @@ const Map = (props) => {
             }
         };
         window.addEventListener("keydown", listener);
+       
 
         return () => {
             window.removeEventListener("keydown", listener);
         };
         //--
-        
+      
+       
+       
+
 
     }, [])
+
+
+    const _onClickModalI = async () => {
+        await swal.fire({
+            title: "Informacion del Usuario",
+            
+            html: `<p>
+              <h5>${`${selectedCorona.nombre} ${selectedCorona.email}`}</h5>
+            <img  width="250"
+                height="350" src=${selectedCorona.photoUrl || ""} alt=""></img>
+                
+            </p>`
+        });
+        
+        
+        const Localion =  {
+            latitude: latitude,
+            longitude:longitude
+          }
+
+    }
+
 
    
     
@@ -128,10 +114,11 @@ const Map = (props) => {
                         setSelectedCorona(data);
                     }}
                     icon={{
-                        url: `https://www.flaticon.com/svg/static/icons/svg/929/929426.svg`,
+                        url: `https://www.flaticon.com/svg/static/icons/svg/3210/3210025.svg`,
                         scaledSize: new window.google.maps.Size(25, 25)
                     }}
                 />
+                
                 
             ))}
             
@@ -147,10 +134,15 @@ const Map = (props) => {
                 >
                     <div>
                         <h4>{selectedCorona.nombre}</h4>
-                        <h5 className="text-center">{selectedCorona.email}</h5>
-                        <img  width="150"
-                            height="150" src={selectedCorona.photoUrl} ></img>
-                        
+                        <a href={`mailto:${selectedCorona.email}`}
+       
+        >
+                            {selectedCorona.email}
+          </a>
+                        <h5 className="text-center"></h5>
+                        <h6 onClick={
+                            _onClickModalI
+                        } className="nav-link text-center"> Detalles</h6> 
 
                     </div>
                 </InfoWindow>
@@ -165,7 +157,7 @@ function Direccion() {
     return (
         <div style={{ width: "100vw", height: "100vh" }}>
             <MapWrapped
-                googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places/nearbysearch/json?location=-33.8670522,151.1957362&radius=2500&type=restaurant&key=AIzaSyCSNjjdr6hW2qOVYI7n2SXlyb7-YAaYCSk"}
+                googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places/nearbysearch/json?location=10.3997200,-75.5144400&radius=2500&type=hospital&key=AIzaSyCSNjjdr6hW2qOVYI7n2SXlyb7-YAaYCSk"}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}

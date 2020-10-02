@@ -38,7 +38,7 @@ const NavBar = (props) => {
                             }
                             {currentUser && 
                                 <li className="nav-item">
-                                    <Link to="/country" className="nav-link">Mapa</Link>
+                            <Link to="/maps-country" className="nav-link">Mapa Global</Link>
                                 </li>
                             }
                             {currentUser && 
@@ -46,8 +46,14 @@ const NavBar = (props) => {
                                 <li className="nav-item">
                                     <Link to="/cases-colombia" className="nav-link">Pacientes</Link>
                                 </li>
+//
+                        }
+                        {currentUser &&
+                            <li className="nav-item">
+                            <Link to="/maps-covid-people" className="nav-link">Ubicacion de Pacientes</Link>
+                            </li>
 
-                            }
+                        }
                             {currentUser && 
                             <li className="nav-item">
                                 <Link to="/register" className="nav-link">Registro de casos</Link>
@@ -58,20 +64,18 @@ const NavBar = (props) => {
                         
 
                             <li className="nav-item">
-                                <Link to="/statesmen" className="nav-link">Registro de casos</Link>
+                            <Link to="/maps-country" className="nav-link"></Link>
                             </li>
 
                         }
                             {currentUser && 
 
-                            <li className="nav-item">
-                            <li
-                                className="nav-link "
-                                onClick={() => app.auth().signOut()}
-                            >
+                            <li className="nav-item" onClick={() => app.auth().signOut()}>
+                          
+                               
                                 Cerrar Sesión
                                </li>
-                                </li>
+                          
                                 
                         }
                         

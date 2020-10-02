@@ -35,8 +35,8 @@ function Map() {
 
     return (
         <GoogleMap
-            defaultZoom={10}
-            defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
+            defaultZoom={3}
+            defaultCenter={{ lat: 40.4211, lng: -70.6903 }}
             defaultOptions={{  }}
         >
             {latest.map((data, index) => (
@@ -70,7 +70,7 @@ function Map() {
                     <div>
                         <h2>{selectedCorona.country}</h2>
                         <h5 className="text-center">{selectedCorona.stats.confirmed}</h5>
-                        <p>{selectedCorona.province}</p>
+                        <p className="text-center">{selectedCorona.province}</p>
 
                     </div>
                 </InfoWindow>

@@ -30,6 +30,7 @@ const CasesColombia = () => {
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo</th>
                        
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,8 @@ const CasesColombia = () => {
 
                                 <td>{item.nombre}</td>
                                 <td>{item.email}</td>
+                                
+                    
                                
                             </tr>
 
