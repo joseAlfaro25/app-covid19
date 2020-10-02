@@ -10,7 +10,7 @@ const Registrar = (props) => {
         longitude,
     } = usePosition(watch);
 
-    
+    const [numeroT,setNumeroT]=useState('')
     const [nombre, setNombre] = useState('')
     const [numeroID, setNumero]= useState('')
     const [email, setEmail] = useState('')
@@ -50,7 +50,8 @@ const Registrar = (props) => {
                     detalles: detalles,
                     longitude: longitude,
                     latitude: latitude,
-                    photoUrl:photoUrl
+                    photoUrl: photoUrl,
+                    numeroT:numeroT
                
                 }
                 await app.firestore().collection('datos').add(nuevoRegistro)
@@ -74,6 +75,7 @@ const Registrar = (props) => {
         setLongitud('')
         setLatitud('')
         setphotoUrl('')
+        setNumeroT('')
         setImagen()
         setRef(null)
 
@@ -122,6 +124,16 @@ const Registrar = (props) => {
                                     onChange={e => setNombre(e.target.value)}
                                     value={nombre}
                                 />
+                                <h5>Numero Telefonico</h5>
+                                <input
+                                    name="numeroT"
+                                    type="number"
+                                    className="form-control"
+
+                                    onChange={e => setNumeroT(e.target.value)}
+                                    value={numeroT}
+                                />
+
                                 <h5>Detalles</h5>
                                 <textarea rows="3" required
                                     type="text-area"
@@ -131,6 +143,7 @@ const Registrar = (props) => {
                                 >
 
                                 </textarea>
+                                
                                 <div>
                                     <div>
                                         <div>

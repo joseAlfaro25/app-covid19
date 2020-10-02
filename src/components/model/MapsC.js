@@ -71,7 +71,6 @@ function Map() {
                         <h2>{selectedCorona.country}</h2>
                         <h5 className="text-center">{selectedCorona.stats.confirmed}</h5>
                         <p className="text-center">{selectedCorona.province}</p>
-
                     </div>
                 </InfoWindow>
             )}
