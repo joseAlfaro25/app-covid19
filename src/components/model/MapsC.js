@@ -51,7 +51,7 @@ function Map() {
                         setSelectedCorona(data);
                     }}
                     icon={{
-                        url: `https://www.flaticon.com/svg/static/icons/svg/2913/2913604.svg`,
+                        url: `https://www.flaticon.com/svg/static/icons/svg/3017/3017381.svg`,
                         scaledSize: new window.google.maps.Size(25, 25)
                     }}
                 />
@@ -74,16 +74,17 @@ function Map() {
                     </div>
                 </InfoWindow>
             )}
+            
         </GoogleMap>
     );
 }
 
-const MapWrapped = withScriptjs(withGoogleMap(Map));
+const MapWr = withScriptjs(withGoogleMap(Map));
 
  function MapsC() {
     return (
         <div style={{ width: "100vw", height: "100vh" }}>
-            <MapWrapped
+            <MapWr
                 googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCSNjjdr6hW2qOVYI7n2SXlyb7-YAaYCSk"}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}
