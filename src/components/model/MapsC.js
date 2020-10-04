@@ -9,6 +9,7 @@ import {
 import axios from 'axios';
 
 
+
 function Map() {
     const [selectedCorona, setSelectedCorona] = useState(null);
     const [latest, setLatest] = useState([]);
@@ -79,13 +80,19 @@ function Map() {
     );
 }
 
+
+
+
+
+
+
 const MapWr = withScriptjs(withGoogleMap(Map));
 
  function MapsC() {
     return (
         <div style={{ width: "100vw", height: "100vh" }}>
             <MapWr
-                googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCSNjjdr6hW2qOVYI7n2SXlyb7-YAaYCSk"}
+                googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCWNL8C7G1F9SlTkPs3d_uyMTs-H9rbrjI"}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}

@@ -5,22 +5,51 @@ import {
   GoogleMap,
   Marker,
   InfoWindow,
-  DirectionsRenderer,
+DirectionsRenderer,
+    Polyline
 } from "react-google-maps";
 import swal from "sweetalert2";
+import stylesMapa from './StylesMapa'
 import app from "../../services/auth/base";
-
+import { usePosition } from 'use-position';
+import { getDistance} from 'geolib'
 
 /* global google */
 
 const Map = (props) => {
+    const watch = true;
+    const {
+        latitude,
+        longitude,
+    } = usePosition(watch);
+    const [directions, setDirections] = useState('');
+    const [error, setError] = useState(null);
+    const [datos, setDatos] = useState([]);
+    const [selectedCorona, setSelectedCorona] = useState('');
+    const [state, setstate] = useState(null);
+    const [distance, setDistance] = useState([])
+  const onClickModalI = async () => {
+        const result = await swal.fire({
+            title: "Informacion del Usuario",
+
+            html: `<p>
+              <h5>${`${selectedCorona.nombre} ${selectedCorona.email}`}</h5>
+            <img  width="250"
+                height="275" src=${selectedCorona.photoUrl || ""} alt=""></img>
+                <h6>${selectedCorona.detalles}</h6>
+            </p>`
+        })
+
+
+    };
+
     
 
-    const [datos, setDatos] = useState([]);
-    const [selectedCorona, setSelectedCorona] = useState(null);
-    const [state, setstate] = useState(null);
-
     useEffect(() => {
+
+       // getDistance({ lat: latitude, lng: longitude }, { lat: selectedCorona.latitude, lng: selectedCorona.longitude }, 1000)
+
+        
         const obtenerDatos = async () => {
             const db = app.firestore();
             try {
@@ -30,12 +59,41 @@ const Map = (props) => {
                     ...doc.data(),
                 }));
                 console.log(arrayData);
+                console.log(distance)
                 setDatos(arrayData);
             } catch (error) {
                 console.log(error);
+                
             }
         };
         obtenerDatos();
+       
+        const directionsService = new google.maps.DirectionsService();
+      
+            directionsService.route(
+
+                {
+
+                    origin: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+                    destination: { lat: parseFloat(selectedCorona.latitude), lng: parseFloat(selectedCorona.longitude) },
+                    travelMode: google.maps.TravelMode.DRIVING,
+                },
+                (result, status) => {
+                    if (status === 'OK') {
+                        setDirections({
+                           directions: result
+                        }
+                        );
+                    } else {
+                        setError({ error: result });
+                        
+                    }
+                }
+            
+
+        )
+     
+       
       
         const listener = (e) => {
             if (e.key === "Escape") {
@@ -48,32 +106,36 @@ const Map = (props) => {
             window.removeEventListener("keydown", listener);
         };
         //--
+
+      
+        
     }, []);
 
-    const onClickModalI = async () => {
-      const result= await swal.fire({
-            title: "Informacion del Usuario",
+    
 
-            html: `<p>
-              <h5>${`${selectedCorona.nombre} ${selectedCorona.email}`}</h5>
-            <img  width="250"
-                height="350" src=${selectedCorona.photoUrl || ""} alt=""></img>
-                <h6>${selectedCorona.detalles}</h6>
-            </p>`,
-        });
-
-
-    };
-
+   
     return (
         <GoogleMap
             defaultZoom={10}
             defaultCenter={{ lat: 10.39972, lng: -75.51444 }}
-            defaultOptions={{}}
+            defaultOptions={{
+                stylesMapa,
+                types:'hopital'
+            
+            }}
         >
+           
+           
+            <Polyline
+                path={ [{ lat:latitude, lng: longitude }, { lat: selectedCorona.latitude, lng: selectedCorona.longitude }]}
+                geodesic={false}
+                options={{
+                    strokeColor: '#38B44F',
+                    strokeOpacity: 1,
+                    strokeWeight: 7,
+                }}/>
 
-
-            {datos.map((data, index) => (
+            {datos.map((data) => (
                 <Marker //Marca principal
                     key={data.id}
                     position={{
@@ -83,17 +145,19 @@ const Map = (props) => {
                     onClick={() => {
                         setSelectedCorona(data);
                     }}
+                    
                     icon={{
                         url: `https://www.flaticon.com/svg/static/icons/svg/3210/3210025.svg`,
                         scaledSize: new window.google.maps.Size(25, 25),
                     }}
                 />
             ))}
+           
 
             {selectedCorona && (
                 <InfoWindow
                     onCloseClick={() => {
-                        setSelectedCorona(null);
+                        setSelectedCorona('');
                     }}
                     position={{
                         lat: parseFloat(selectedCorona.latitude),
@@ -110,71 +174,21 @@ const Map = (props) => {
                         </a></div>
 
                         <h5 className="text-center"></h5>
-                        <h6 onClick={onClickModalI} className="nav-link text-center">
+                        <h6 className="nav-link text-center" onClick={onClickModalI}>
                            
               Detalles
             </h6>
                     </div>
                 </InfoWindow>
             )}
-            <MapDirectionsRenderer
-                places={datos}
-                travelMode={google.maps.TravelMode.DRIVING}
-            />
-
+            
+           
         </GoogleMap>
     );
 };
 
-const MapDirectionsRenderer = (props) => {
-    const [directions, setDirections] = useState(null);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-       
-
-        const waypoints =  props.places.map((data) => ({
-           
-            location: { lat: data.latitude, lng:data.longitude },
-            stopover: false
-        }));
-        
-        const origin = google.maps.LatLng(waypoints.location);
-        const destination = google.maps.LatLng(waypoints.location);
 
 
-        const directionsService = new google.maps.DirectionsService();
-        directionsService.route(
-            {
-                origin: origin,
-                destination: destination,
-                travelMode: google.maps.TravelMode.DRIVING,
-                waypoints: waypoints
-            },
-            (result, status) => {
-                if (status === google.maps.DirectionsStatus.OK) {
-                    setDirections({
-                        directions: result
-                    });
-                } else {
-                    setError({ error: result });
-                }
-            }
-        );
-    },[]);
-
-    if (error) {
-        return <h1>{error}</h1>;
-    }
-    return (
-        directions && (
-            <DirectionsRenderer directions={directions} />
-        )
-    );
-
-
-
-}
 
 
 
@@ -184,14 +198,15 @@ const MapW = withScriptjs(withGoogleMap(Map));
 
 function Direccion() {
    
-
+// 
    
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <MapW
-        googleMapURL={
-          "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places/nearbysearch/json?location=10.3997200,-75.5144400&radius=2500&type=hospital&key=AIzaSyCSNjjdr6hW2qOVYI7n2SXlyb7-YAaYCSk"
-        }
+      googleMapURL={
+        "https://maps.googleapis.com/maps/api/js?v=3.places/nearbysearch/json?location=10.39972,-75.51444&radius=5000&sensor=true&query=hospital&key=AIzaSyCWNL8C7G1F9SlTkPs3d_uyMTs-H9rbrjI"    
+           }
+              
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}

@@ -23,7 +23,7 @@ const CasesColombia = () => {
        
     return (
         <div className="container mb-2">
-            <table class="table mt-2">
+            <table className="table mt-2">
                 <thead>
                     <tr>
                         
@@ -36,8 +36,9 @@ const CasesColombia = () => {
                 <tbody>
                     {
                         Pacientes.map(item => (
-                            <tr>
-
+                            
+                            <tr key={item.id}>
+                                
                                 <td>{item.nombre}</td>
                                 <td>{item.email}</td>
                                 
