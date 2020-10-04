@@ -12,6 +12,7 @@ import swal from "sweetalert2";
 import stylesMapa from './StylesMapa'
 import app from "../../services/auth/base";
 import { usePosition } from 'use-position';
+import data from '../../services/data.json'
 import { getDistance} from 'geolib'
 
 /* global google */
@@ -26,6 +27,7 @@ const Map = (props) => {
     const [error, setError] = useState(null);
     const [datos, setDatos] = useState([]);
     const [selectedCorona, setSelectedCorona] = useState('');
+    const [selectdHopital, setSelectedHopital] = useState('');
     const [state, setstate] = useState(null);
     const [distance, setDistance] = useState([])
   const onClickModalI = async () => {
@@ -98,6 +100,7 @@ const Map = (props) => {
         const listener = (e) => {
             if (e.key === "Escape") {
                 setSelectedCorona(null);
+                setSelectedHopital(null)
             }
         };
         window.addEventListener("keydown", listener);
@@ -127,13 +130,14 @@ const Map = (props) => {
            
            
             <Polyline
-                path={ [{ lat:latitude, lng: longitude }, { lat: selectedCorona.latitude, lng: selectedCorona.longitude }]}
+                path={ [{ lat:latitude, lng: longitude }, { lat: selectdHopital.latitude, lng: selectdHopital.longitud }]}
                 geodesic={false}
-                options={{
+                    options={{
                     strokeColor: '#38B44F',
                     strokeOpacity: 1,
                     strokeWeight: 7,
-                }}/>
+                }} />
+            {/*  */}
 
             {datos.map((data) => (
                 <Marker //Marca principal
@@ -178,6 +182,44 @@ const Map = (props) => {
                            
               Detalles
             </h6>
+                    </div>
+                </InfoWindow>
+            )}
+            {/*  */}
+
+            {data.map((dato) => (
+                <Marker
+                    key={dato.id}
+                    position={{
+                        lat: parseFloat(dato.latitude),
+                        lng: parseFloat(dato.longitud),
+                    }}
+                    onClick={() => {
+                       setSelectedHopital(dato);
+                    }}
+
+                    icon={{
+                        url: `https://www.flaticon.com/svg/static/icons/svg/745/745435.svg`,
+                        scaledSize: new window.google.maps.Size(25, 25),
+                    }}
+                
+                />
+
+            ))}
+            {selectdHopital && (
+                <InfoWindow
+                    onCloseClick={() => {
+                        setSelectedHopital('');
+                    }}
+                    position={{
+                        lat: parseFloat(selectdHopital.latitude),
+                        lng: parseFloat(selectdHopital.longitud),
+                    }}
+                    
+                >
+                    <div>
+                        <h6 className="text-center">{selectdHopital.nombre}</h6>
+                        <h1></h1>
                     </div>
                 </InfoWindow>
             )}
