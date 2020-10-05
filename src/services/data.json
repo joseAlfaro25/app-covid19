@@ -1,8 +1,9 @@
 [
    {"id":1,
-      "nombre":"Hospital del Pozon",
-      "latitude":10.412709,
-      "longitud":-75.457012
+      "nombre":"Clinica Madre Bernarda",
+      "latitude": 10.394088,
+      "longitud": -75.477342
+      
    },
    {"id": 2,
       "nombre":"Centro Medico Providencia",
@@ -15,9 +16,9 @@
       "longitud":-75.473974
    },
    {"id": 4,
-      "nombre":"Clinica Madre Bernarda",
-      "latitude":10.394088,
-      "longitud":-75.477342
+      "nombre": "Hospital del Pozon",
+      "latitude": 10.412709,
+      "longitud": -75.457012
    },
    {"id": 5,
       "nombre":"Clínica General Del Norte",

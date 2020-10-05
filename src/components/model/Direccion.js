@@ -13,7 +13,7 @@ import stylesMapa from './StylesMapa'
 import app from "../../services/auth/base";
 import { usePosition } from 'use-position';
 import data from '../../services/data.json'
-import { getDistance, orderByDistance} from 'geolib'
+import { getDistance, findNearest} from 'geolib'
 
 /* global google */
 
@@ -26,13 +26,13 @@ const Map = (props) => {
     const [directions, setDirections] = useState('');
     const [error, setError] = useState(null);
     const [datos, setDatos] = useState([]);
-    const [orden, setOrden] = useState([]);
+    const [orden, setOrden] = useState('');
     const [selectedCorona, setSelectedCorona] = useState('');
     const [selectdHopital, setSelectedHopital] = useState('');
     const [state, setstate] = useState(null);
     const [distance, setDistance] = useState('');
     const Mydire = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
-    const HospitaCer = { latitude: data.latitude, longitude: data.longitud }
+    
     const onClickModalI = async () => {
         const result = await swal.fire({
             title: "Informacion del Usuario",
@@ -49,11 +49,7 @@ const Map = (props) => {
     };
 
 
-   const sortDescending = () => {
-       
-       orden.sort((a, b) => a - b).reverse()
-        
-    }
+   
     
 
     
@@ -148,22 +144,25 @@ const Map = (props) => {
                 onClick={
                    
                     () => {
+                        
+                        const orden = JSON.stringify(findNearest({ Mydire },
+                                data
+                        ))
+                        
+                        const end=JSON.parse(orden)
+                        
+                       
 
-                       swal.fire({
-                            title: "Hospitales",
-
+                        swal.fire({
+                            title: "Clinica Mas Cercana ",
                             html: `<p>
-              ${data.sort().map(
-                  item => (
-                            getDistance(Mydire, { latitude: parseFloat(item.latitude), longitude: parseFloat(item.longitud) }
-                      ) / 1000
-                  
-                      ))}
-            </p>`
+                            ${end.nombre}
+                             </p>`
                         })
+                        
 
-                      
-
+                 
+                        
                     }
 
                 }
