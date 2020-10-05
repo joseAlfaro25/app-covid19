@@ -13,7 +13,7 @@ import stylesMapa from './StylesMapa'
 import app from "../../services/auth/base";
 import { usePosition } from 'use-position';
 import data from '../../services/data.json'
-import { getDistance} from 'geolib'
+import { getDistance, orderByDistance} from 'geolib'
 
 /* global google */
 
@@ -26,12 +26,14 @@ const Map = (props) => {
     const [directions, setDirections] = useState('');
     const [error, setError] = useState(null);
     const [datos, setDatos] = useState([]);
+    const [orden, setOrden] = useState([]);
     const [selectedCorona, setSelectedCorona] = useState('');
     const [selectdHopital, setSelectedHopital] = useState('');
     const [state, setstate] = useState(null);
     const [distance, setDistance] = useState('');
-    const Mydire = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
-  const onClickModalI = async () => {
+    const Mydire = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
+    const HospitaCer = { latitude: data.latitude, longitude: data.longitud }
+    const onClickModalI = async () => {
         const result = await swal.fire({
             title: "Informacion del Usuario",
 
@@ -45,6 +47,14 @@ const Map = (props) => {
 
 
     };
+
+
+   const sortDescending = () => {
+       
+       orden.sort((a, b) => a - b).reverse()
+        
+    }
+    
 
     
 
@@ -120,15 +130,51 @@ const Map = (props) => {
    
     return (
         <GoogleMap
-            defaultZoom={10}
-            defaultCenter={{ lat: 10.39972, lng: -75.51444 }}
+            defaultZoom={15}
+            defaultCenter={ parseFloat(latitude),  parseFloat(longitude)  ||{ lat: 10.39972, lng: -75.51444 }}
             defaultOptions={{
                 stylesMapa,
                 types:'hopital'
             
             }}
         >
-           
+            <Marker
+
+
+                position={
+                    { lat: parseFloat(latitude), lng: parseFloat(longitude) }
+                   
+                }
+                onClick={
+                   
+                    () => {
+
+                       swal.fire({
+                            title: "Hospitales",
+
+                            html: `<p>
+              ${data.sort().map(
+                  item => (
+                            getDistance(Mydire, { latitude: parseFloat(item.latitude), longitude: parseFloat(item.longitud) }
+                      ) / 1000
+                  
+                      ))}
+            </p>`
+                        })
+
+                      
+
+                    }
+
+                }
+
+                icon={{
+                    url: `https://www.flaticon.es/svg/static/icons/svg/2667/2667975.svg`,
+                    scaledSize: new window.google.maps.Size(30, 25),
+                }}
+
+            />
+
            
             <Polyline
                 path={ [{ lat:latitude, lng: longitude }, { lat: selectdHopital.latitude, lng: selectdHopital.longitud }]}
@@ -138,11 +184,11 @@ const Map = (props) => {
                     strokeOpacity: 1,
                     strokeWeight: 7,
                 }} />
-            {/*  */}
+            {/* personas */}
 
             {datos.map((data) => (
                 <Marker //Marca principal
-                    key={data.id}
+                    key={data.latitude+data.nombre}
                     position={{
                         lat: parseFloat(data.latitude),
                         lng: parseFloat(data.longitude),
@@ -156,6 +202,7 @@ const Map = (props) => {
                         scaledSize: new window.google.maps.Size(25, 25),
                     }}
                 />
+                
             ))}
            
 
@@ -186,7 +233,7 @@ const Map = (props) => {
                     </div>
                 </InfoWindow>
             )}
-            {/*  */}
+            {/* Hospitales */}
 
             {data.map((dato) => (
                 <Marker
@@ -208,6 +255,7 @@ const Map = (props) => {
                 
                 />
 
+
             ))}
             {selectdHopital && (
                 <InfoWindow
@@ -227,10 +275,13 @@ const Map = (props) => {
                     <div>
                         <h6 className="text-center">{selectdHopital.nombre}</h6>
                         
-                        <h6 className="text-center">{distance}Km</h6>
+                        <h6 className="text-center">{distance} Km</h6>
                     </div>
                 </InfoWindow>
             )}
+            {/*  */}
+            
+
             
            
         </GoogleMap>
@@ -254,7 +305,7 @@ function Direccion() {
     <div style={{ width: "100vw", height: "100vh" }}>
       <MapW
       googleMapURL={
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCWNL8C7G1F9SlTkPs3d_uyMTs-H9rbrjI"    
+        "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCWNL8C7G1F9SlTkPs3d_uyMTs-H9rbrjI"    
            }
               
         loadingElement={<div style={{ height: `100%` }} />}

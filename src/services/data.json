@@ -1,146 +1,122 @@
 [
-  {
-    "id": 1,
-    "nombre": "Hospital del Pozon",
-    "latitude": 10.412709,
-    "longitud": -75.457012
-  },
-  {
-    "id": 2,
-    "nombre": "Centro Medico Providencia",
-    "latitude": 10.404014,
-    "longitud": -75.477179
-  },
-  {
-    "id": 3,
-    "nombre": "Centro de Salud Fredonia",
-    "latitude": 10.402851,
-    "longitud": -75.473974
-  },
-  {
-    "id": 4,
-    "nombre": "Clinica Madre Bernarda",
-    "latitude": 10.394088,
-    "longitud": -75.477342
-  },
-  {
-    "id": 5,
-    "nombre": "Clínica General Del Norte",
-    "latitude": 10.395377,
-    "longitud": -75.48964
-  },
-  {
-    "id": 6,
-    "nombre": "Clínica Blas de Lezo S.A.",
-    "latitude": 10.391824,
-    "longitud": -75.486837
-  },
-  {
-    "id": 7,
-    "nombre": "CLINICA LA NUESTRA",
-    "latitude": 10.392208,
-    "longitud": -75.478592
-  },
-  {
-    "id": 8,
-    "nombre": "Centro Médico Buenos Aires",
-    "latitude": 10.390566,
-    "longitud": -75.491126
-  },
-  {
-    "id": 9,
-    "nombre": "Urgencias Clínica Blas De Lezo",
-    "latitude": 10.390354,
-    "longitud": -75.494724
-  },
-  {
-    "id": 10,
-    "nombre": "Hospital San Juan De Dios",
-    "latitude": 10.389138,
-    "longitud": -75.501338
-  },
-  {
-    "id": 11,
-    "nombre": "Hospital Universitario Del Caribe",
-    "latitude": 10.400275,
-    "longitud": -75.503506
-  },
-  {
-    "id": 12,
-    "nombre": "Cap Olaya Herrera",
-    "latitude": 10.405651,
-    "longitud": -75.484933
-  },
-  {
-    "id": 13,
-    "nombre": "Clínica Respiratoria y de Alergias S.A.S",
-    "latitude": 10.405237,
-    "longitud": -75.505861
-  },
-  {
-    "id": 14,
-    "nombre": "Clinica Higea",
-    "latitude": 10.406579,
-    "longitud": -75.514839
-  },
-  {
-    "id": 15,
-    "nombre": "Clínica De Fracturas Y Medicina",
-    "latitude": 10.407741,
-    "longitud": -75.514384
-  },
-  {
-    "id": 16,
-    "nombre": "Clinica Crecer",
-    "latitude": 10.409464,
-    "longitud": -75.51737
-  },
-  {
-    "id": 17,
-    "nombre": "Hospital Maternidad",
-    "latitude": 10.407312,
-    "longitud": -75.516349
-  },
-  {
-    "id": 18,
-    "nombre": "Clinica Gestion Salud",
-    "latitude": 10.406494,
-    "longitud": -75.516548
-  },
-  {
-    "id": 19,
-    "nombre": "Clínica La Ermita de Cartagena",
-    "latitude": 10.418017,
-    "longitud": -75.533108
-  },
-  {
-    "id": 20,
-    "nombre": "Clinica La Ermita ",
-    "latitude": 10.418096,
-    "longitud": -75.533131
-  },
-  {
-    "id": 21,
-    "nombre": "Hospital Naval",
-    "latitude": 10.416021,
-    "longitud": -75.550735
-  },
-  {
-    "id": 22,
-    "nombre": "Clinica Medihelp services",
-    "latitude": 10.397426,
-    "longitud": -75.556331
-  },
-  {
-    "id": 23,
-    "nombre": "Nuevo Hospital de Bocagrande ",
-    "latitude": 10.3958,
-    "longitud": -75.555839
-  },
-  {
-    "id": 24,
-    "nombre": "Hospital Bocagrande",
-    "latitude": 10.394505,
-    "longitud": -75.558091
-  }
+   {"id":1,
+      "nombre":"Hospital del Pozon",
+      "latitude":10.412709,
+      "longitud":-75.457012
+   },
+   {"id": 2,
+      "nombre":"Centro Medico Providencia",
+      "latitude":10.404014,
+      "longitud":-75.477179
+   },
+   {"id": 3,
+      "nombre":"Centro de Salud Fredonia",
+      "latitude":10.402851,
+      "longitud":-75.473974
+   },
+   {"id": 4,
+      "nombre":"Clinica Madre Bernarda",
+      "latitude":10.394088,
+      "longitud":-75.477342
+   },
+   {"id": 5,
+      "nombre":"Clínica General Del Norte",
+      "latitude":10.395377,
+      "longitud":-75.489640
+   },
+   {"id": 6,
+      "nombre":"Clínica Blas de Lezo S.A.",
+      "latitude":10.391824,
+      "longitud":-75.486837
+   },
+   {"id": 7,
+      "nombre":"CLINICA LA NUESTRA",
+      "latitude":10.392208,
+      "longitud":-75.478592
+   },
+   {"id": 8,
+      "nombre":"Centro Médico Buenos Aires",
+      "latitude":10.390566,
+      "longitud":-75.491126
+   },
+   {"id": 9,
+      "nombre":"Urgencias Clínica Blas De Lezo",
+      "latitude":10.390354,
+      "longitud":-75.494724
+   },
+   {"id": 10,
+      "nombre": "Hospital San Juan De Dios",
+      "latitude": 10.389138,
+      "longitud": -75.501338
+   },
+   {"id": 11,
+      "nombre": "Hospital Universitario Del Caribe",
+      "latitude": 10.400275,
+      "longitud": -75.503506
+   },
+   {"id": 12,
+      "nombre": "Cap Olaya Herrera",
+      "latitude": 10.405651,
+      "longitud": -75.484933
+   },
+   {"id": 13,
+      "nombre": "Clínica Respiratoria y de Alergias S.A.S",
+      "latitude": 10.405237,
+      "longitud": -75.505861
+   },
+   {"id": 14,
+      "nombre": "Clinica Higea",
+      "latitude": 10.406579,
+      "longitud": -75.514839
+   },
+   {"id": 15,
+      "nombre": "Clínica De Fracturas Y Medicina",
+      "latitude": 10.407741,
+      "longitud": -75.514384
+   },
+   {"id": 16,
+      "nombre": "Clinica Crecer",
+      "latitude": 10.409464,
+      "longitud": -75.517370
+   },
+   {"id": 17,
+      "nombre": "Hospital Maternidad",
+      "latitude": 10.407312,
+      "longitud": -75.516349
+   },
+   {"id": 18,
+      "nombre": "Clinica Gestion Salud",
+      "latitude": 10.406494,
+      "longitud": -75.516548
+   },
+   {"id": 19,
+      "nombre": "Clínica La Ermita de Cartagena",
+      "latitude": 10.418017,
+      "longitud": -75.533108
+   },
+   {"id": 20,
+      "nombre": "Clinica La Ermita ",
+      "latitude": 10.418096,
+      "longitud": -75.533131
+   },
+   {"id": 21,
+      "nombre": "Hospital Naval",
+      "latitude": 10.416021,
+      "longitud": -75.550735
+   },
+   {"id": 22,
+      "nombre": "Clinica Medihelp services",
+      "latitude": 10.397426,
+      "longitud": -75.556331
+   },
+   {"id": 23,
+      "nombre": "Nuevo Hospital de Bocagrande ",
+      "latitude": 10.395800,
+      "longitud": -75.555839
+   },
+   {"id": 24,
+      "nombre": "Hospital Bocagrande",
+      "latitude": 10.394505,
+      "longitud": -75.558091
+   }
 ]
