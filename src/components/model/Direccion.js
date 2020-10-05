@@ -29,7 +29,8 @@ const Map = (props) => {
     const [selectedCorona, setSelectedCorona] = useState('');
     const [selectdHopital, setSelectedHopital] = useState('');
     const [state, setstate] = useState(null);
-    const [distance, setDistance] = useState([])
+    const [distance, setDistance] = useState('');
+    const Mydire = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
   const onClickModalI = async () => {
         const result = await swal.fire({
             title: "Informacion del Usuario",
@@ -61,7 +62,6 @@ const Map = (props) => {
                     ...doc.data(),
                 }));
                 console.log(arrayData);
-                console.log(distance)
                 setDatos(arrayData);
             } catch (error) {
                 console.log(error);
@@ -79,6 +79,7 @@ const Map = (props) => {
                     origin: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
                     destination: { lat: parseFloat(selectedCorona.latitude), lng: parseFloat(selectedCorona.longitude) },
                     travelMode: google.maps.TravelMode.DRIVING,
+                    datos:datos
                 },
                 (result, status) => {
                     if (status === 'OK') {
@@ -195,7 +196,9 @@ const Map = (props) => {
                         lng: parseFloat(dato.longitud),
                     }}
                     onClick={() => {
-                       setSelectedHopital(dato);
+                        setSelectedHopital(dato);
+                       setDistance(getDistance(Mydire, { latitude: parseFloat(dato.latitude), longitude: parseFloat(dato.longitud) }
+                       )/1000)
                     }}
 
                     icon={{
@@ -215,11 +218,16 @@ const Map = (props) => {
                         lat: parseFloat(selectdHopital.latitude),
                         lng: parseFloat(selectdHopital.longitud),
                     }}
-                    
+                    onClick={
+                        () => {
+                            setDistance() }
+                    }
+
                 >
                     <div>
                         <h6 className="text-center">{selectdHopital.nombre}</h6>
-                        <h1></h1>
+                        
+                        <h6 className="text-center">{distance}Km</h6>
                     </div>
                 </InfoWindow>
             )}
@@ -246,7 +254,7 @@ function Direccion() {
     <div style={{ width: "100vw", height: "100vh" }}>
       <MapW
       googleMapURL={
-        "https://maps.googleapis.com/maps/api/js?v=3.places/nearbysearch/json?location=10.39972,-75.51444&radius=5000&sensor=true&query=hospital&key=AIzaSyCWNL8C7G1F9SlTkPs3d_uyMTs-H9rbrjI"    
+        "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCWNL8C7G1F9SlTkPs3d_uyMTs-H9rbrjI"    
            }
               
         loadingElement={<div style={{ height: `100%` }} />}
